@@ -5,8 +5,13 @@ from nltk.corpus import stopwords
 import nltk
 from nltk.stem.porter import PorterStemmer
 
-nltk.download('punkt')
-nltk.download('stopwords')
+@st.cache_resource
+def load_nltk():
+    nltk.download('punkt')
+    nltk.download('punkt_tab')   # 🔥 THIS IS THE MISSING ONE
+    nltk.download('stopwords')
+
+load_nltk()
 
 ps = PorterStemmer()
 
@@ -55,4 +60,5 @@ if st.button('Predict'):
         st.header("Spam")
     else:
         st.header("Not Spam")
+
 
